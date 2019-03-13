@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ForumManage.Models;
+using ForumManage.Models.ViewModels;
 using ForumManage.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +15,12 @@ namespace ForumManage.Controllers
     public class ForumsController : ControllerBase
     {
         private readonly IRepository<Forum> _repository;
-        public ForumsController(IRepository<Forum> repository)
+        private readonly IMapper _mapper;
+      
+        public ForumsController(IRepository<Forum> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         // GET api/forums
         [HttpGet]
@@ -40,26 +45,29 @@ namespace ForumManage.Controllers
 
         // POST api/forums
         [HttpPost]
-        public async Task<ActionResult<Forum>> Post([FromBody] Forum forum)
+        public async Task<ActionResult<ForumVM>> Post([FromBody] ForumVM forumVM)
         {
-            return await _repository.Add(forum);
-            
+            Forum forum = _mapper.Map<Forum>(forumVM);
+            Forum result =  await _repository.Add(forum);
+            return _mapper.Map<ForumVM>(result);            
         }
 
         // PUT api/forums/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Forum>> Put(long id, [FromBody] Forum forum)
+        public async Task<ActionResult<ForumVM>> Put(long id, [FromBody] ForumVM forumVM)
         {
-            if (id != forum.Id)
+            if (id != forumVM.Id)
             {
                 return BadRequest();
             }
-            return await _repository.Update(id, forum);
+            Forum forum = _mapper.Map<Forum>(forumVM);
+            Forum result = await _repository.Update(id,forum);
+            return _mapper.Map<ForumVM>(result);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
             await _repository.Delete(id);
             return Ok(id);

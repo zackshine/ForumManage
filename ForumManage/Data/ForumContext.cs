@@ -91,12 +91,12 @@ namespace ForumManage.Data
                     case EntityState.Added:
                         ((BaseEntity)entry.Entity).AddedDate = DateTime.Now;
                         ((BaseEntity)entry.Entity).ModifiedDate = DateTime.Now;
-                        entry.CurrentValues["IsDeleted"] = false;
+                        //entry.CurrentValues["IsDeleted"] = false;
                         break;
 
                     case EntityState.Modified:
                         ((BaseEntity)entry.Entity).ModifiedDate = DateTime.Now;
-                        entry.CurrentValues["IsDeleted"] = false;
+                        //entry.CurrentValues["IsDeleted"] = false;
                         break;
 
                     case EntityState.Deleted:

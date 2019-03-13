@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,10 +9,9 @@ namespace ForumManage.Models
 {
     public class Engineer : BaseEntity
     {
-        // public int EngineerId { get; set; }
         public string Name { get; set; }
-        public byte[] Photo { get; set; }
-        public DateTime CreateTime { get; set; }
+        public IFormFile Photo { get; set; }
+        
 
         public List<ForumEngineer> ForumEngineers { get; set; }
         public List<Case> Cases { get; set; }
