@@ -1,0 +1,14 @@
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.csprojAssemblyReference.cache
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.csproj.CoreCompileInputs.cache
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.RazorAssemblyInfo.cache
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.RazorAssemblyInfo.cs
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.AssemblyInfoInputs.cache
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.AssemblyInfo.cs
+D:\CoreDemo\ForumManage\ForumManage\bin\Debug\netcoreapp2.2\ForumManage.deps.json
+D:\CoreDemo\ForumManage\ForumManage\bin\Debug\netcoreapp2.2\ForumManage.runtimeconfig.json
+D:\CoreDemo\ForumManage\ForumManage\bin\Debug\netcoreapp2.2\ForumManage.runtimeconfig.dev.json
+D:\CoreDemo\ForumManage\ForumManage\bin\Debug\netcoreapp2.2\ForumManage.dll
+D:\CoreDemo\ForumManage\ForumManage\bin\Debug\netcoreapp2.2\ForumManage.pdb
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.RazorTargetAssemblyInfo.cache
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.dll
+D:\CoreDemo\ForumManage\ForumManage\obj\Debug\netcoreapp2.2\ForumManage.pdb
