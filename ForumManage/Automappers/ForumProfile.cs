@@ -13,6 +13,7 @@ namespace ForumManage.Automappers
         public ForumProfile()
         {
             CreateMap<Forum, ForumVM>().ReverseMap();
+            CreateMap<Engineer, EngineerVM>().ReverseMap();
         }
     }
 }

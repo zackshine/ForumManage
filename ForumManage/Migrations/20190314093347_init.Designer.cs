@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ForumManage.Migrations
 {
     [DbContext(typeof(ForumContext))]
-    [Migration("20190313075307_initial")]
-    partial class initial
+    [Migration("20190314093347_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -57,8 +57,6 @@ namespace ForumManage.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AddedDate");
-
-                    b.Property<DateTime>("CreateTime");
 
                     b.Property<bool>("IsDeleted");
 

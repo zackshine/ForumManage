@@ -14,11 +14,11 @@ namespace ForumManage.Models
 
 
         //Forum-Case One-Many
-        public long ForumId { get; set; }
+        public long? ForumId { get; set; }
         public Forum Forum { get; set; }
 
         //Engineer-Case One-Many
-        public long EngineerId { get; set; }
+        public long? EngineerId { get; set; }
         public Engineer Engineer { get; set; }
 
         //Case-Tag M-M

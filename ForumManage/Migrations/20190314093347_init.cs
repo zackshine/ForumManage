@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ForumManage.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,8 +18,7 @@ namespace ForumManage.Migrations
                     ModifiedDate = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Photo = table.Column<byte[]>(nullable: true),
-                    CreateTime = table.Column<DateTime>(nullable: false)
+                    Photo = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {

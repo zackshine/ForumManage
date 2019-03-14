@@ -68,20 +68,20 @@ namespace ForumManage.Data
 
         private void OnBeforeSaving()
         {
-            var selectedEntityList = ChangeTracker.Entries()
-                                   .Where(x => x.Entity is BaseEntity &&
-                                   (x.State == EntityState.Added || x.State == EntityState.Modified));
+            //var selectedEntityList = ChangeTracker.Entries()
+            //                       .Where(x => x.Entity is BaseEntity &&
+            //                       (x.State == EntityState.Added || x.State == EntityState.Modified));
 
-            foreach (var entity in selectedEntityList)
-            {
-                if(entity.State == EntityState.Added)
-                {
-                    ((BaseEntity)entity.Entity).AddedDate = DateTime.Now;
-                }
+            //foreach (var entity in selectedEntityList)
+            //{
+            //    if(entity.State == EntityState.Added)
+            //    {
+            //        ((BaseEntity)entity.Entity).AddedDate = DateTime.Now;
+            //    }
 
-                ((BaseEntity)entity.Entity).ModifiedDate = DateTime.Now;
+            //    ((BaseEntity)entity.Entity).ModifiedDate = DateTime.Now;
                 
-            }
+            //}
 
 
             foreach (var entry in ChangeTracker.Entries())
@@ -91,17 +91,14 @@ namespace ForumManage.Data
                     case EntityState.Added:
                         ((BaseEntity)entry.Entity).AddedDate = DateTime.Now;
                         ((BaseEntity)entry.Entity).ModifiedDate = DateTime.Now;
-                        //entry.CurrentValues["IsDeleted"] = false;
                         break;
 
                     case EntityState.Modified:
                         ((BaseEntity)entry.Entity).ModifiedDate = DateTime.Now;
-                        //entry.CurrentValues["IsDeleted"] = false;
                         break;
 
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
-                        //((BaseEntity)entry.Entity).ModifiedDate = DateTime.Now;
                         entry.CurrentValues["IsDeleted"] = true;
                         break;
                 }
