@@ -7,7 +7,7 @@ namespace ForumManage.Models.ViewModels
 {
     public class ForumVM
     {
-        public long Id { get; set; }
+        //public long Id { get; set; }
         public string Name { get; set; }
     }
 }

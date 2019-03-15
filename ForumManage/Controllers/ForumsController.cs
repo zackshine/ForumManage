@@ -56,11 +56,14 @@ namespace ForumManage.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ForumVM>> Put(long id, [FromBody] ForumVM forumVM)
         {
-            if (id != forumVM.Id)
-            {
-                return BadRequest();
-            }
+            var entity = await _repository.GetById(id);
+
             Forum forum = _mapper.Map<Forum>(forumVM);
+            forum.Id = id;
+            forum.AddedDate = entity.AddedDate;
+            forum.ModifiedDate = entity.ModifiedDate;
+            forum.IsDeleted = entity.IsDeleted;
+
             Forum result = await _repository.Update(id,forum);
             return _mapper.Map<ForumVM>(result);
         }

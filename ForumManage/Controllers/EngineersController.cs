@@ -36,51 +36,71 @@ namespace EngineerManage.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Engineer>> GetById(long id)
         {
-            var Engineer = await _repository.GetById(id);
-            if (Engineer == null)
+            var engineer = await _repository.GetById(id);
+            if (engineer == null)
             {
                 return NotFound();
             }
 
-            return Engineer;
+            return engineer;
         }
 
         // POST api/Engineers
         [HttpPost]
-        public async Task<ActionResult<EngineerVM>> Post([FromForm] EngineerVM EngineerVM)
+        public async Task<ActionResult<EngineerVM>> Post([FromForm] EngineerVM engineerVM)
         {
-            if (EngineerVM.Image != null)
+            if (engineerVM.Image != null)
             {
                 byte[] photo = null;
                 using (var memoryStream = new MemoryStream())
                 {
-                    await EngineerVM.Image.CopyToAsync(memoryStream);
+                    await engineerVM.Image.CopyToAsync(memoryStream);
                     photo = memoryStream.ToArray();
                 }
 
-                Engineer Engineer = _mapper.Map<Engineer>(EngineerVM);
-                Engineer.Photo = photo;
-                Engineer result = await _repository.Add(Engineer);
+                Engineer engineer = _mapper.Map<Engineer>(engineerVM);
+                engineer.Photo = photo;
+                Engineer result = await _repository.Add(engineer);
                 return _mapper.Map<EngineerVM>(result);
 
             }
             else
             {
-                return EngineerVM;
+                return engineerVM;
             }          
         }
 
         // PUT api/Engineers/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<EngineerVM>> Put(long id, [FromBody] EngineerVM EngineerVM)
+        public async Task<ActionResult<EngineerVM>> Put(long id, [FromForm] EngineerVM engineerVM)
         {
-            //if (id != EngineerVM.Id)
-            //{
-            //    return BadRequest();
-            //}
-            Engineer Engineer = _mapper.Map<Engineer>(EngineerVM);
-            Engineer result = await _repository.Update(id, Engineer);
-            return _mapper.Map<EngineerVM>(result);
+            if (engineerVM.Image != null)
+            {
+                byte[] photo = null;
+                using (var memoryStream = new MemoryStream())
+                {
+                    await engineerVM.Image.CopyToAsync(memoryStream);
+                    photo = memoryStream.ToArray();
+                }
+
+                var entity = await _repository.GetById(id);
+
+                Engineer engineer = _mapper.Map<Engineer>(engineerVM);
+                engineer.Id = id;
+                engineer.Photo = photo;
+                engineer.AddedDate = entity.AddedDate;
+                engineer.ModifiedDate = entity.ModifiedDate;
+                engineer.IsDeleted = entity.IsDeleted;
+
+                Engineer result = await _repository.Update(id, engineer);
+                return _mapper.Map<EngineerVM>(result);
+
+            }
+            else
+            {
+                return engineerVM;
+            }
+           
         }
 
         // DELETE api/values/5
