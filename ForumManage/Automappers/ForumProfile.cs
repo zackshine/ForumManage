@@ -13,7 +13,9 @@ namespace ForumManage.Automappers
         public ForumProfile()
         {
             CreateMap<Forum, ForumVM>().ReverseMap();
-            CreateMap<Engineer, EngineerVM>().ReverseMap();
+            CreateMap<EngineerVM, Engineer>();
+            CreateMap<Engineer, EngineerVM>()
+                       .ForMember(x => x.Image, opt => opt.Ignore());
         }
     }
 }

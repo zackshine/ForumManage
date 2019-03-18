@@ -8,10 +8,8 @@ namespace ForumManage.Models.ViewModels
 {
     public class EngineerVM
     {
-        //public long Id { get; set; }
         public string Name { get; set; }
-
         public IFormFile Image { get; set; }
-        public byte[] Photo { get; set; }
+        //public byte[] Photo { get; set; }
     }
 }

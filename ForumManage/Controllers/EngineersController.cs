@@ -9,6 +9,7 @@ using ForumManage.Models.ViewModels;
 using ForumManage.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EngineerManage.Controllers
 {
@@ -16,20 +17,21 @@ namespace EngineerManage.Controllers
     [ApiController]
     public class EngineersController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnv;
         private readonly IRepository<Engineer> _repository;
         private readonly IMapper _mapper;
 
-        public EngineersController(IRepository<Engineer> repository, IMapper mapper)
+        public EngineersController(IRepository<Engineer> repository, IMapper mapper, IHostingEnvironment hostEnv)
         {
             _repository = repository;
             _mapper = mapper;
+            _hostingEnv = hostEnv;
         }
         // GET api/Engineers
         [HttpGet]
         public ActionResult<List<Engineer>> Get()
         {
             return _repository.GetAll();
-
         }
 
         // GET api/Engineers/5
@@ -41,66 +43,66 @@ namespace EngineerManage.Controllers
             {
                 return NotFound();
             }
-
             return engineer;
         }
 
         // POST api/Engineers
         [HttpPost]
-        public async Task<ActionResult<EngineerVM>> Post([FromForm] EngineerVM engineerVM)
+        public async Task<ActionResult<Engineer>> Post([FromForm] EngineerVM engineerVM)
         {
             if (engineerVM.Image != null)
             {
-                byte[] photo = null;
-                using (var memoryStream = new MemoryStream())
+                var fileName = Path.GetFileName(engineerVM.Image.FileName);
+                var filePath = Path.Combine(_hostingEnv.WebRootPath, "images\\Avatars",fileName);
+
+                using (var fileSteam = new FileStream(filePath, FileMode.Create))
                 {
-                    await engineerVM.Image.CopyToAsync(memoryStream);
-                    photo = memoryStream.ToArray();
+                    await engineerVM.Image.CopyToAsync(fileSteam);
                 }
-
+                
+                //byte[] photo = null;
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    await engineerVM.Image.CopyToAsync(memoryStream);
+                //    photo = memoryStream.ToArray();
+                //}
                 Engineer engineer = _mapper.Map<Engineer>(engineerVM);
-                engineer.Photo = photo;
-                Engineer result = await _repository.Add(engineer);
-                return _mapper.Map<EngineerVM>(result);
-
+                engineer.ImageName = fileName;
+                var result = await _repository.Add(engineer);
+                return result;
             }
             else
             {
-                return engineerVM;
+                return BadRequest();
             }          
         }
 
         // PUT api/Engineers/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<EngineerVM>> Put(long id, [FromForm] EngineerVM engineerVM)
+        public async Task<ActionResult<Engineer>> Put(long id, [FromForm] EngineerVM engineerVM)
         {
             if (engineerVM.Image != null)
             {
-                byte[] photo = null;
-                using (var memoryStream = new MemoryStream())
+                var fileName = Path.GetFileName(engineerVM.Image.FileName);
+                var filePath = Path.Combine(_hostingEnv.WebRootPath, "images\\Avatars", fileName);
+               
+                using (var fileSteam = new FileStream(filePath, FileMode.Create))
                 {
-                    await engineerVM.Image.CopyToAsync(memoryStream);
-                    photo = memoryStream.ToArray();
+                    await engineerVM.Image.CopyToAsync(fileSteam);
                 }
 
                 var entity = await _repository.GetById(id);
 
-                Engineer engineer = _mapper.Map<Engineer>(engineerVM);
-                engineer.Id = id;
-                engineer.Photo = photo;
-                engineer.AddedDate = entity.AddedDate;
-                engineer.ModifiedDate = entity.ModifiedDate;
-                engineer.IsDeleted = entity.IsDeleted;
+                Engineer engineer = _mapper.Map(engineerVM,entity);
+                engineer.ImageName = fileName;
 
                 Engineer result = await _repository.Update(id, engineer);
-                return _mapper.Map<EngineerVM>(result);
-
+                return result;
             }
             else
             {
-                return engineerVM;
-            }
-           
+                return BadRequest();
+            }         
         }
 
         // DELETE api/values/5

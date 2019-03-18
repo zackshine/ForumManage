@@ -56,13 +56,13 @@ namespace ForumManage.Migrations
 
                     b.Property<DateTime>("AddedDate");
 
+                    b.Property<string>("ImageName");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime>("ModifiedDate");
 
                     b.Property<string>("Name");
-
-                    b.Property<byte[]>("Photo");
 
                     b.HasKey("Id");
 
