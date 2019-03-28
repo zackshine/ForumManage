@@ -98,8 +98,11 @@ namespace ForumManage.Data
                         break;
 
                     case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.CurrentValues["IsDeleted"] = true;
+                        if (entry.Entity is ILogicInterface)
+                        {
+                            entry.State = EntityState.Modified;
+                            entry.CurrentValues["IsDeleted"] = true;
+                        }                       
                         break;
                 }
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumManage.Models
 {
-    public class Forum : BaseEntity
+    public class Forum : BaseEntity, ILogicInterface
     {
 
        // public int ForumId { get; set; }
@@ -14,6 +14,9 @@ namespace ForumManage.Models
 
         public List<ForumEngineer> ForumEngineers { get; set; }//M-M
         public List<Case> Cases { get; set; }//O-M
+
+        public bool IsDeleted { get; set; }
+
     }
 
     public class ForumEngineer

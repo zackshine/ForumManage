@@ -11,7 +11,12 @@ namespace ForumManage.Models
         public long Id { get; set; }
         public DateTime AddedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }
        
+    }
+     public interface ILogicInterface
+    {
+        bool IsDeleted { get; set; }
+        
     }
 }

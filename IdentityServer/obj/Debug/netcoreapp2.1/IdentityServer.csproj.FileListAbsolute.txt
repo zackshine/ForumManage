@@ -1,0 +1,14 @@
+D:\CoreDemo\ForumManage\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.deps.json
+D:\CoreDemo\ForumManage\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.runtimeconfig.json
+D:\CoreDemo\ForumManage\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.runtimeconfig.dev.json
+D:\CoreDemo\ForumManage\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.dll
+D:\CoreDemo\ForumManage\IdentityServer\bin\Debug\netcoreapp2.1\IdentityServer.pdb
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.csproj.CoreCompileInputs.cache
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorAssemblyInfo.cache
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorAssemblyInfo.cs
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.AssemblyInfoInputs.cache
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.AssemblyInfo.cs
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.RazorTargetAssemblyInfo.cache
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.dll
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.pdb
+D:\CoreDemo\ForumManage\IdentityServer\obj\Debug\netcoreapp2.1\IdentityServer.csprojAssemblyReference.cache

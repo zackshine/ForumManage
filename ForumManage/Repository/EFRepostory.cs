@@ -22,14 +22,14 @@ namespace ForumManage.Repository
         }
         public List<T> GetAll()
         {
-            return entities.Where(e=>e.IsDeleted == false)
+            return entities
                   .AsNoTracking()
                   .ToList();
         }
 
         public async Task<T> GetById(long id)
         {
-            return await entities.Where(e => e.IsDeleted == false)
+            return await entities
                      .AsNoTracking()
                      .SingleOrDefaultAsync(s => s.Id == id);
         }

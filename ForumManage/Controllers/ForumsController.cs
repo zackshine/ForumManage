@@ -3,29 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ForumManage.Data;
 using ForumManage.Models;
 using ForumManage.Models.ViewModels;
 using ForumManage.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumManage.Controllers
 {
     [Route("api/[controller]")]
+    //[Authorize]
     [ApiController]
     public class ForumsController : ControllerBase
     {
         private readonly IRepository<Forum> _repository;
         private readonly IMapper _mapper;
-      
-        public ForumsController(IRepository<Forum> repository, IMapper mapper)
+        private readonly IMyComponent _myComponent;
+
+
+        public ForumsController(IRepository<Forum> repository, IMapper mapper, IMyComponent myComponent)
         {
             _repository = repository;
             _mapper = mapper;
+            _myComponent = myComponent;
         }
         // GET api/forums
         [HttpGet]
         public ActionResult<List<Forum>> Get()
         {
+       
+            var xx = _myComponent.GetDataFromSession();
             return _repository.GetAll();
 
         }
@@ -39,7 +47,6 @@ namespace ForumManage.Controllers
             {
                 return NotFound();
             }
-
             return forum;
         }
 
