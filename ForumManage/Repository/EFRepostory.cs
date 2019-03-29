@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ForumManage.Repository
 {
-    public class EFRepository<T> : IRepository<T> where T : BaseEntity
+    public class EFRepository<T> : IRepository<T> where T : BaseEntity,ILogicInterface
     {
         private readonly ForumContext _context;
         private DbSet<T> entities;
@@ -22,14 +22,14 @@ namespace ForumManage.Repository
         }
         public List<T> GetAll()
         {
-            return entities
+            return entities.Where(e => e.IsDeleted == false)
                   .AsNoTracking()
                   .ToList();
         }
 
         public async Task<T> GetById(long id)
         {
-            return await entities
+            return await entities.Where(e => e.IsDeleted == false)
                      .AsNoTracking()
                      .SingleOrDefaultAsync(s => s.Id == id);
         }

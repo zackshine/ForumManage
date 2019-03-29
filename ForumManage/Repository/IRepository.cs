@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumManage.Repository
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity,ILogicInterface
     {
         List<T> GetAll();
         Task<T> GetById(long id);
